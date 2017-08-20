@@ -4,5 +4,5 @@ require "mkmf"
 
 $CFLAGS << ' -W -Wall'
 
-create_makefile("bitpack")
+create_makefile("bitpack/bitpack")
 

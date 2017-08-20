@@ -315,7 +315,7 @@ int bitpack_get_bits(bitpack_t bp, unsigned long num_bits, unsigned long index, 
         bitpack_get(bp, index + i, &bit);
 
         if (bit == 1) {
-            v |= bit << (num_bits - i - 1);
+            v |= (unsigned long)bit << (num_bits - i - 1);
         }
     }
 

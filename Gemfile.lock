@@ -1,0 +1,19 @@
+PATH
+  remote: .
+  specs:
+    bitpack (0.1.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    rdoc (5.1.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bitpack!
+  rdoc
+
+BUNDLED WITH
+   1.14.6

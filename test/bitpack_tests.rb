@@ -1,5 +1,6 @@
-
+$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 $:.unshift File.join(File.dirname(__FILE__), '..', 'ext')
+
 require 'bitpack'
 
 require 'test/unit'
@@ -103,7 +104,7 @@ class TC_BitPack < Test::Unit::TestCase
     assert_equal("000000001011010111111111111111111111111111111111", bp.to_bin)
     assert_equal(0, bp.get_bits(8, 0))
 
-    unsigned_long_size = [1].pack("L").size
+    unsigned_long_size = [1].pack("L_").size
 
     # error cases
     msg = sprintf("range size %d bits is too large (maximum size is %d bits)", unsigned_long_size * 8 + 1, unsigned_long_size * 8)

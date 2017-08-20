@@ -1,4 +1,3 @@
-
 class BitPack
   # Element Assignment. Sets the bit at +index+, or the range of bits indicated
   # by the Range object +range+, or the range specified by +index+ and +length+.
@@ -51,3 +50,4 @@ class BitPack
   end
 end
 
+require "bitpack/bitpack"

@@ -1,38 +1,10 @@
-
 require 'rubygems'
-Gem::manage_gems
-require 'rake/gempackagetask'
 require 'rake/clean'
-require 'rake/rdoctask'
+require 'rdoc/task'
 
-NAME = 'bitpack'
-VERS = '0.1'
-GEM_NAME = "#{NAME}-#{VERS}.gem"
+require './lib/bitpack/version'
 
 RDOC_MAIN = "README"
-
-spec = Gem::Specification.new do |s|
-  s.name             = NAME
-  s.version          = VERS
-  s.author           = "Corey Burrows"
-  s.email            = "corey.burrows@gmail.com"
-  s.platform         = Gem::Platform::RUBY
-  s.summary          = "Library for packing and unpacking binary strings."
-  s.files            = %w{README CHANGELOG LICENSE Rakefile} +
-                       Dir.glob("ext/**/*.{h,c,rb}") +
-                       Dir.glob("lib/**/*.{rb}") +
-                       Dir.glob("test/**/*.rb")
-  s.require_path     = "."
-  s.autorequire      = "bitpack"
-  s.extensions       = ["ext/extconf.rb"]
-  #s.test_file        = ""
-  s.has_rdoc         = true
-  s.extra_rdoc_files = [ RDOC_MAIN, "CHANGELOG", "LICENSE" ]
-end
-
-Rake::GemPackageTask.new(spec) do |pkg|
-  pkg.need_tar = true
-end
 
 Rake::RDocTask.new do |rd|
   rd.main = RDOC_MAIN
@@ -45,43 +17,31 @@ CLEAN.include FileList["ext/**/*.o",
                        "ext/**/*.bundle",
                        "ext/**/Makefile",
                        "ext/**/mkmf.log",
-                       "pkg/*.gem",
+                       "*.gem",
                        "test/*.o",
                        "test/test_driver",
                        "html"
                       ]
 
 task :build do
-  Dir.chdir('ext')
-  sh('ruby extconf.rb')
-  sh('make')
-  Dir.chdir('..')
+  Dir.chdir('ext/bitpack') do
+    sh('ruby extconf.rb && make')
+  end
 end
 
-task :c_test do
-  Dir.chdir('test')
-  sh('make')
-  Dir.chdir('..')
-end
-
-task :ruby_test do
-  Dir.chdir('test')
-  sh('ruby bitpack_tests.rb')
-  Dir.chdir('..')
-end
-
-task :test => [ :build, :c_test, :ruby_test ] do
+task :test => [:build] do
+  sh('ruby test/bitpack_tests.rb')
 end
 
 task :gem do
-  sh %{rake pkg/#{GEM_NAME}}
+  sh %{gem build bitpack.gemspec}
 end
 
 task :install => :gem do
-  sh %{sudo gem install pkg/#{GEM_NAME}}
+  sh %{gem install ./bitpack-#{BitPack::VERSION}.gem}
 end
 
 task :uninstall do
-  sh %{sudo gem uninstall #{NAME}}
+  sh %{gem uninstall bitpack}
 end
 

@@ -655,8 +655,5 @@ void Init_bitpack()
     bp_exceptions[BITPACK_ERR_RANGE_TOO_BIG] = rb_eRangeError;
     bp_exceptions[BITPACK_ERR_READ_PAST_END] = rb_eRangeError;
     bp_exceptions[BITPACK_ERR_EMPTY]         = rb_eRangeError;
-
-    /* require the pure ruby methods */
-    rb_require("lib/bitpack.rb");
 }
 

@@ -1,0 +1,5 @@
+*.gem
+ext/bitpack/Makefile
+ext/bitpack/bitpack.bundle
+ext/bitpack/*.o
+html/
