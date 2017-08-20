@@ -93,6 +93,6 @@ The format is as follows:
 BitPack is almost entirely implemented as a C library.  If you would like to
 use BitPack from a C program, just grab the bitpack.c and bitpack.h files from
 the ext/ directory of the gem and include them in your project.  Documentation
-can be found in bitpack.h and example usage can be seen in test/bitpack_tests.c.
+can be found in bitpack.h.
 
 
