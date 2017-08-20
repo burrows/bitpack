@@ -38,7 +38,7 @@ task :gem do
 end
 
 task :install => :gem do
-  sh %{gem install ./bitpack-#{BitPack::VERSION}.gem}
+  sh %{gem install -V --local ./bitpack-#{BitPack::VERSION}.gem}
 end
 
 task :uninstall do
