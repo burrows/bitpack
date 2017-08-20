@@ -45,3 +45,7 @@ task :uninstall do
   sh %{gem uninstall bitpack}
 end
 
+task :publish do
+  sh %{gem push ./bitpack-#{BitPack::VERSION}.gem}
+end
+

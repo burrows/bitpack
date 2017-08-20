@@ -1,5 +1,12 @@
 = BitPack Changelog
 
+== Version 0.2.0
+
+=== August 20, 2017
+
+* Modernize build.
+* Fix 64-bit bug.
+
 == Version 0.1
 
 === November 14, 2007
